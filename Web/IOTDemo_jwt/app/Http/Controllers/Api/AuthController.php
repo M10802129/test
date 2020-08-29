@@ -77,23 +77,21 @@ class AuthController extends Controller
                 'device_token' => $deviceToken,
             ]);
         }
-
-        // $loginInfo = new LoginInfo();
-        // $loginInfo->user_id = $user->id;
-        // $loginInfo->device_token = $deviceToken;
-        
-        // $user->login_info()->updateOrCreate([
-        //     'device_token' => $deviceToken
-        // ]);
-
-        return response()->json([
+        $resp = [
             'success' => true,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
             'user' => $user,
             'device_token' => $deviceToken
-        ]);
+        ];
+        if($user->worker){
+            // $resp['worker'] = $user->worker
+            // $user->worker->workerTypeInfo();
+            error_log($user->worker->workerTypeInfo);
+            error_log($user->worker->topics);
+        }
+        return response()->json($resp);
     }
     /**
      * @param Request $request

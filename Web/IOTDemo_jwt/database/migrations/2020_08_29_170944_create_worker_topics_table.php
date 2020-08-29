@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkersTable extends Migration
+class CreateWorkerTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateWorkersTable extends Migration
      */
     public function up()
     {
-        Schema::create('workers', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('worker_topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->string('name');
             $table->unsignedBigInteger('worker_type_id');
-            $table->text('description')->nullable();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+                
+            $table->string('topic_name');
+            $table->string('topic_path');
+            $table->string('topic_description')->nullable();
+            $table->unique([
+                'worker_type_id',
+                'topic_name'
+            ]);
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateWorkersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workers');
+        Schema::dropIfExists('worker_topics');
     }
 }
