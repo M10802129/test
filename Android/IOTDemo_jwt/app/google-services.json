@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "143596770039",
+    "firebase_url": "https://testiotmessage.firebaseio.com",
+    "project_id": "testiotmessage",
+    "storage_bucket": "testiotmessage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143596770039:android:146ebafb1cd4993df4b9f2",
+        "android_client_info": {
+          "package_name": "com.example.mahmudinm.androidlaravellogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143596770039-6kpanmj0619effjo4m9nf9o6ed24v50c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mahmudinm.androidlaravellogin",
+            "certificate_hash": "9069ebe107dc98634f229f8d18278bed9abaa178"
+          }
+        },
+        {
+          "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_s0goMSR2HfNsF8izjSfGslY5ttmemhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143596770039:android:d9ba799c7f9be62cf4b9f2",
+        "android_client_info": {
+          "package_name": "com.mitlab.iotdemo_jwt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143596770039-vlr67ktmtsdccop4nborq0a9qgbcrt0f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mitlab.iotdemo_jwt",
+            "certificate_hash": "9069ebe107dc98634f229f8d18278bed9abaa178"
+          }
+        },
+        {
+          "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_s0goMSR2HfNsF8izjSfGslY5ttmemhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143596770039:android:37090dabf6a865d6f4b9f2",
+        "android_client_info": {
+          "package_name": "com.mitlab.zusliu.data"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143596770039-31bj98outjv2qohm763lk9ieaamosfl3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mitlab.zusliu.data",
+            "certificate_hash": "9069ebe107dc98634f229f8d18278bed9abaa178"
+          }
+        },
+        {
+          "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_s0goMSR2HfNsF8izjSfGslY5ttmemhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143596770039-2dkh8p9pi2muhb632iq35o98ud8psa4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
