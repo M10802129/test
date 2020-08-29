@@ -6,13 +6,21 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @Expose
-    @SerializedName("id") int id;
+    @SerializedName("id")
+    int id;
+
     @Expose
     @SerializedName("name")
     String name;
+
     @Expose
     @SerializedName("email")
     String email;
+
+    @Expose
+    @SerializedName("worker")
+    Worker worker;
+
 
     public int getId() {
         return id;
@@ -36,5 +44,11 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Worker getWorker(){ return worker; }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 }

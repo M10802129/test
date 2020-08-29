@@ -3,6 +3,8 @@ package com.mitlab.iotdemo_jwt.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.mitlab.iotdemo_jwt.model.Worker;
+
 
 public class SharedPrefManager {
     public static final String SP_LOGIN_APP = "IOTdemo";
@@ -13,7 +15,8 @@ public class SharedPrefManager {
     public static final String SP_DEVICE_TOKEN = "SP_DEVICE_TOKEN";
     public static final String SP_IS_LOGIN = "SP_IS_LOGIN";
 
-    public static final String SP_EXPRIETIME = "SP_EXPRIETIME";
+    public static final String SP_EXPIRETIME = "SP_EXPIRETIME";
+    public static final String SP_WORKER = "SP_WORKER";
 
 
     SharedPreferences sp;
@@ -44,7 +47,7 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
-    public String getSPNama(){
+    public String getSPName(){
         return sp.getString(SP_NAME, "");
     }
 
@@ -65,12 +68,16 @@ public class SharedPrefManager {
 
     public Boolean getLoginExpire(){
         long nowTime = System.currentTimeMillis()/1000;
-        long expireTime = sp.getLong(SP_EXPRIETIME, nowTime);
+        long expireTime = sp.getLong(SP_EXPIRETIME, nowTime);
         if(expireTime > nowTime)
             return false;
         else
             return true;
     };
+
+    public String getWorkerJson(){
+        return sp.getString(SP_WORKER, "");
+    }
 
     public void resetSP(){
         spEditor.clear();

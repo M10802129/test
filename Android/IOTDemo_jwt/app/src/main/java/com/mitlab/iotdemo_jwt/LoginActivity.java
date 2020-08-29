@@ -17,7 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.gson.Gson;
 import com.mitlab.iotdemo_jwt.model.User;
+import com.mitlab.iotdemo_jwt.model.Worker;
 import com.mitlab.iotdemo_jwt.network.ApiClient;
 import com.mitlab.iotdemo_jwt.network.ApiInterface;
 import com.mitlab.iotdemo_jwt.network.response.UserResponse;
@@ -105,10 +107,17 @@ public class LoginActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 if(response.code() == 200){
                                     User user = response.body().getUser();
-                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAME, user.getName());
+                                    Worker worker = user.getWorker();
+
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(worker);
+
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAME, worker.getName());
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_WORKER, json);
+
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, "bearer " +response.body().getToken());
                                     sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_IS_LOGIN, true);
-                                    sharedPrefManager.saveSPLong(SharedPrefManager.SP_EXPRIETIME, Helper.getNowTimestamp()+response.body().getExpires_in());
+                                    sharedPrefManager.saveSPLong(SharedPrefManager.SP_EXPIRETIME, Helper.getNowTimestamp()+response.body().getExpires_in());
                                     startActivity(new Intent(mContext, MainActivity.class)
                                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                     finish();

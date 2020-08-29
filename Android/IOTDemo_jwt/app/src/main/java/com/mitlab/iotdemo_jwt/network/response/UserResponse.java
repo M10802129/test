@@ -10,11 +10,15 @@ public class UserResponse extends BaseResponse {
     @Expose
     @SerializedName("success")
     String status;
+
     @Expose
     @SerializedName("access_token")
     String token;
+
     @Expose
-    @SerializedName("expires_in") int expires_in;
+    @SerializedName("expires_in")
+    int expires_in;
+
     @Expose
     @SerializedName("user")
     User user;
