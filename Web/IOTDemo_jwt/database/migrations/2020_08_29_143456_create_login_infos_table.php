@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkersTable extends Migration
+class CreateLoginInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateWorkersTable extends Migration
      */
     public function up()
     {
-        Schema::create('workers', function (Blueprint $table) {
+        Schema::create('login_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unique();
-            $table->string('name');
-            $table->string('worker_type');
-            $table->text('description')->nullable();
+            $table->string('device_token')->nullable();
+            $table->boolean('expire')->default(false);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -34,6 +33,6 @@ class CreateWorkersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workers');
+        Schema::dropIfExists('login_infos');
     }
 }

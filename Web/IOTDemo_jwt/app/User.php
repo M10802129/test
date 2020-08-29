@@ -62,4 +62,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne('App\Worker');
     }
+
+    public function login_info(){
+        return $this->hasOne('App\LoginInfo');
+    }
 }

@@ -15,17 +15,25 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 |
 */
 
-Route::post('login', 'Api\AuthController@login');
-Route::post('register', 'Api\AuthController@register');
+Route::post('/auth/register', 'Api\AuthController@register');
 
-Route::group(['middleware' => 'auth.jwt'], function () {
-    Route::get('logout', 'Api\AuthController@logout');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('logindevice', 'Api\AuthController@loginDevice');
+    Route::post('logout', 'Api\AuthController@logout');
+    Route::post('refresh', 'Api\AuthController@refresh');
+    Route::post('user', 'Api\AuthController@me');
 
-    Route::post('/worker/set', 'Api\WorkerController@store');
-    Route::get('/worker', 'Api\WorkerController@index');
 
 });
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'worker'
+], function () {
+    Route::get('', 'Api\WorkerController@index');
+    Route::post('set', 'Api\WorkerController@store');
+});
