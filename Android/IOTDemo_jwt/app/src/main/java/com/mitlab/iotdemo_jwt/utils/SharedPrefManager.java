@@ -71,4 +71,9 @@ public class SharedPrefManager {
         else
             return true;
     };
+
+    public void resetSP(){
+        spEditor.clear();
+        spEditor.commit();
+    }
 }

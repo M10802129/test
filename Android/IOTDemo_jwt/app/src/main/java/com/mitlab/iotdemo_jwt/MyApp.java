@@ -11,8 +11,8 @@ public class MyApp extends Application {
     }
 
     public static Context getContext(){
-        return instance;
-        // or return instance.getApplicationContext();
+//        return instance;
+        return instance.getApplicationContext();
     }
 
 
