@@ -19,9 +19,9 @@ import com.mitlab.iotdemo_jwt.network.ApiClient;
 import com.mitlab.iotdemo_jwt.network.ApiInterface;
 import com.mitlab.iotdemo_jwt.utils.SharedPrefManager;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity implements PositionServiceCallback {
+    private Context mContext;
+
     private SharedPrefManager sharedPrefManager;
     private ApiInterface apiInterface;
     private Boolean isLogin, isCoordSet;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mContext = MainActivity.this;
         nameText = (TextView)findViewById(R.id.nameText);
         setCoordBtn = (Button)findViewById(R.id.setCoordBtn);
         logoutBtn = (Button)findViewById(R.id.btnLogout);
@@ -55,20 +55,23 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
 
     public void checkAll(){
         if(!sharedPrefManager.getSPIsLogin()){ //未登入
+            Log.e("DEBUG", "no login!");
+
             isLogin = false;
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(mContext, LoginActivity.class);
             startActivity(intent);
             finish();
         }else{
             if(sharedPrefManager.getLoginExpire()){ //登入到期
                 isLogin = false;
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }else{
+
                 isLogin = true;
                 nameText.setText(sharedPrefManager.getSPName());
-                Toast.makeText(this, sharedPrefManager.getWorkerJson(), Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, sharedPrefManager.getWorkerJson(), Toast.LENGTH_LONG).show();
 
                 doBindService();
                 logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +79,7 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
                     public void onClick(View view) {
                         sharedPrefManager.resetSP();
                         doUnbindService();
-
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        startActivity(new Intent(mContext, LoginActivity.class));
                         finish();
                     }
                 });
@@ -89,7 +90,14 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
                         String coordYVal = coordYText.getText().toString();
                         int coordX = Integer.parseInt(coordXVal);
                         int coordY = Integer.parseInt(coordYVal);
-                        positionService.setCoord(coordX, coordY);
+                        String deviceToken = sharedPrefManager.getSPDeviceToken();
+                        String token = "";
+                        try{
+                            token = sharedPrefManager.getSPToken();
+                        }catch(Exception e){
+                            token = "";
+                        }
+                        positionService.setCoord(coordX, coordY, deviceToken, token);
                         if(!isCoordSet){
                             isCoordSet = true;
                         }
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
     @Override
     protected void onStop() {
         super.onStop();
-//        doUnbindService();
+        doUnbindService();
     }
     @Override
     protected void onDestroy() {
@@ -149,7 +157,19 @@ public class MainActivity extends AppCompatActivity implements PositionServiceCa
             }catch(NumberFormatException ex) {
                 coordY = coordY;
             }
-            positionService.setCoord(coordX, coordY);
+            String deviceToken = "";
+            try{
+                deviceToken = sharedPrefManager.getSPDeviceToken();
+            }catch(Exception e){
+                deviceToken = "";
+            }
+            String token = "";
+            try{
+                token = sharedPrefManager.getSPToken();
+            }catch(Exception e){
+                token = "";
+            }
+            positionService.setCoord(coordX, coordY, deviceToken, token);
         }
     }
 

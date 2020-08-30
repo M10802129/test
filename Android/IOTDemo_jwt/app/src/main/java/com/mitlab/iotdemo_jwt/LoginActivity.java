@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         if (sharedPrefManager.getSPIsLogin()){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class)
+            startActivity(new Intent(mContext, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
         }
