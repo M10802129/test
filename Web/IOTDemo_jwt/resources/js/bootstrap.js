@@ -24,6 +24,7 @@ window.Echo = new Echo({
     // host: window.location.hostname + ':6001' // this is laravel-echo-server host
     host: '140.118.122.148:6001' // this is laravel-echo-server host
 });
+
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
@@ -32,3 +33,6 @@ window.Echo = new Echo({
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+import * as PIXI from 'pixi.js';
+window.PIXI = PIXI;
