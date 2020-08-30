@@ -36,4 +36,10 @@ Route::group([
 ], function () {
     Route::get('', 'Api\WorkerController@index');
     Route::post('set', 'Api\WorkerController@store');
+    Route::group([
+        'prefix' => 'position'
+    ], function () {
+        Route::post('set', 'Api\PositionController@store');
+        
+    });
 });
