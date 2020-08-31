@@ -38,6 +38,7 @@
             const app = new PIXI.Application({
                 width: 512, height: 512,
                 resolution: window.devicePixelRatio || 1,
+                // transparent:true,
                 view:myView
             });
             console.log(app.view)
@@ -188,7 +189,17 @@
                     workerInfo.html("");
                 }
             }
-            
+            function askRepair(repairType) {
+                $.ajax({
+                    url: "api/repair/"+repairType,
+                    method: "GET",
+                    success: function(response){
+                        if(response.success){
+                            alert("維修類型" + repairType + "發送成功!");
+                        }
+                    }
+                })
+            }
         </script>
 
     </body>

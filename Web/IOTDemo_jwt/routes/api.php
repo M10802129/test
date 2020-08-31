@@ -16,6 +16,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 */
 
 Route::post('/auth/register', 'Api\AuthController@register');
+Route::get('/repair/{repairType}', 'Api\RepairController@message');
+
 
 Route::group([
     'middleware' => 'api',
